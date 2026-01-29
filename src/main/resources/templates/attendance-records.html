@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Records</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: #eef2f8;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(to right, #eaf0fb, #f7f9ff);
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: #2b4a8a;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            display: flex;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 230px;
+            background: #1f3b64;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 14px 20px;
+            color: #dce6f7;
+            text-decoration: none;
+        }
+
+        .sidebar a.active,
+        .sidebar a:hover {
+            background: #2e5aac;
+            color: #fff;
+        }
+
+        .sidebar .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 14px;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .content h1 {
+            color: #2b4a8a;
+            margin-bottom: 20px;
+        }
+
+        /* ===== FILTER BAR ===== */
+        .filters {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .filters select,
+        .filters button {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .filters button {
+            background: #3b6edc;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ===== TABLE ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: #3b6edc;
+            color: #fff;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f4f7ff;
+        }
+
+        /* ===== ACTION BUTTONS ===== */
+        .btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-edit {
+            background: #4b78d8;
+        }
+
+        .btn-delete {
+            background: #e55353;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <h2>College Information & Management System</h2>
+    <div>Admin | Logout</div>
+</div>
+
+<div class="container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+        <a href="/admin-dashboard">Dashboard</a>
+        <a href="/students">Manage Students</a>
+        <a href="/attendance" class="active">Attendance</a>
+        <a href="#">Marks</a>
+
+        <div class="footer">
+            Logged in as: <b>Admin</b>
+        </div>
+    </div>
+
+    <!-- ===== CONTENT ===== -->
+    <div class="content">
+
+        <h1>Attendance Records</h1>
+
+        <!-- ===== FILTERS ===== -->
+        <div class="filters">
+            <select>
+                <option>All Courses</option>
+            </select>
+            <select>
+                <option>All Subjects</option>
+            </select>
+            <select>
+                <option>All Dates</option>
+            </select>
+            <button>Search</button>
+        </div>
+
+        <!-- ===== TABLE ===== -->
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Course</th>
+                <th>Subject</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="r : ${records}">
+            <td th:text="${r[0]}"></td>
+            <td th:text="${r[1]}"></td>
+            <td th:text="${r[2]}"></td>
+            <td th:text="${r[3]}"></td>
+            <td th:text="${r[4]}"></td>
+                <td>
+                    <a class="btn btn-edit">Edit</a>
+                    <a class="btn btn-delete">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

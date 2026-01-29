@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Student</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: #eef2f8;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background-color: #722f37;
+            padding: 14px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            display: flex;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            width: 230px;
+            background: #1f3b64;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 12px 20px;
+            color: #dce6f7;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #2e5aac;
+            color: #fff;
+        }
+
+        .sidebar .footer {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 13px;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .content h1 {
+            margin: 0 0 12px 0;
+            font-size: 20px;
+            color: #722f37;
+        }
+
+        /* ===== COMPACT CARD ===== */
+        .card {
+            background: #fff;
+            max-width: 900px;
+            padding: 14px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+        }
+
+        /* ===== TABLE-LIKE ROWS ===== */
+        .row {
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .label {
+            width: 180px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .value {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* ===== ACTION BUTTONS ===== */
+        .actions {
+            margin-top: 12px;
+        }
+
+        .btn {
+            padding: 6px 12px;
+            font-size: 13px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #fff;
+            margin-right: 8px;
+        }
+
+        .btn-edit {
+            background: #198754;
+        }
+
+        .btn-back {
+            background: #722f37;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <h2>College Information & Management System</h2>
+    <div>Admin | Logout</div>
+</div>
+
+<div class="container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <div class="sidebar">
+        <a href="/admin-dashboard">Dashboard</a>
+        <a href="/students" class="active">Manage Students</a>
+        <a href="/attendance">Attendance</a>
+        <a href="#">Marks</a>
+
+        <div class="footer">
+            Logged in as: <b>Admin</b>
+        </div>
+    </div>
+
+    <!-- ===== CONTENT ===== -->
+    <div class="content">
+
+        <h1>Student Details</h1>
+
+        <div class="card">
+
+            <div class="row">
+                <div class="label">Roll No</div>
+                <div class="value" th:text="${student.rollNo}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Name</div>
+                <div class="value" th:text="${student.name}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Gender</div>
+                <div class="value" th:text="${student.gender}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Course</div>
+                <div class="value" th:text="${student.course}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Semester</div>
+                <div class="value" th:text="${student.semester}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Phone</div>
+                <div class="value" th:text="${student.phone}"></div>
+            </div>
+
+            <div class="row">
+                <div class="label">Email</div>
+                <div class="value" th:text="${student.email}"></div>
+            </div>
+
+            <div class="actions">
+                <a th:href="@{/edit/{id}(id=${student.id})}" class="btn btn-edit">Edit</a>
+                <a href="/students" class="btn btn-back">Back</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
